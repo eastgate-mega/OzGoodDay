@@ -1,101 +1,14 @@
-<div id="header">
-    <div class="header_top">
-        <div class="header_top_l">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">OZGoodDeals</a>
         </div>
-        <div class="header_top_m">
-            <div style='float:left' id="ECS_MEMBERZONE">
-                欢迎光临本店
-            <% if(user) { %>
-                <%=user.userName%>
-                <a href="/user/logout">退出登录</a>
-            <% } else { %>
-                <a href="/user/login">会员登录</a>|
-                <a href="/user/reg">免费注册</a>
-            <% } %>
-                <label id="myaccount">
-                    <a href="/user/info">我的帐户</a>
-                </label>
-                <label id="helpcenter">
-                    <a href="javascript:void(0)">
-                        帮助中心
-                    </a>
-                </label>
-            </div>
-            <div style='float:right'>
-                <label id="collect">
-                    <a href="javascript:void(0)">
-                        加入收藏
-                    </a>
-                </label>
-                <label id="sethome">
-                    <a href="/admin" >
-                        后台管理
-                    </a>
-                </label>
-            </div>
-            <div class='clear'>
-            </div>
-        </div>
-        <div class="header_top_r">
-        </div>
-        <div class="clear">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Login</a></li>
+                <li><a href="/">Sign Up</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
         </div>
     </div>
-    <div class="logo">
-        <a href="javascript:void(0)">
-            <img src="/images/logo.gif">
-        </a>
-    </div>
-    <div class="header_intro">
-        <img src="/images/by_top.gif">
-    </div>
-    <div class="headerdg">
-        <em>
-            抢购热线（全天24小时）
-        </em>
-        <p>
-            <img src="/images/tel1.gif">
-        </p>
-    </div>
-</div>
-<div id="nav">
-    <div class="nav_m">
-        <ul>
-            <li>
-                <a href="/">
-                    首页
-                </a>
-            </li>
-            <% tree.forEach(function (t) { %>
-            <% if(t.parent_id == 0){ %>
-            <li>
-                <a href="/category?cat_id=<%=t._id%>" id="">
-                    <%=t.cat_name%>
-                </a>
-            </li>
-            <% } %>
-            <% }) %>
-            <li>
-                <a href="javascript:void(0)">
-                    留言板
-                </a>
-            </li>
-        </ul>
-    </div>
-    <DIV class="navr_recent">
-        <SPAN class="navr_recent_l1">
-                　
-        </SPAN>
-        <a href="/flow/cart" title="查看购物车">
-            您的购物车中有 <%=cart.items().length%> 件商品，总计金额 ￥<%=cart.getTotalMoney()%>元。
-        </a>
-        <EM>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-        </EM>
-    </DIV>
-    <div class="clear">
-    </div>
-</div>
-<div class="nav_min_div" id="min_div">
-    <img src="/images/top_min.jpg">
-</div>
+</nav>
