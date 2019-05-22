@@ -52,6 +52,10 @@ app.get('/', function(req, res){
   res.render('ContactPage');
 });
 
+app.get('/login', function(req, res){
+  res.render('login');
+});
+
 app.get('/test', function(req, res){
   res.render('test');
 });
