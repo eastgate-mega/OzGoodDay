@@ -1,0 +1,38 @@
+<% include partials/header %>
+<title>Product Page</title>
+<div class='form'>
+    <div class='flex-detail'>
+        <div class='detail-left'>
+            <img class='img-size' src='images/location-icon.png'>
+        </div>
+        <div class='detail-right'>
+            <div class='item'>Item Location</div>
+            <div class='item'>Item Name</div>
+            <div class='item'>Item Price</div>
+            <div class='item'>Item Description</div>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+<% include partials/footer %>
+<style>
+    .form{
+        margin: 100px 80px;
+    }
+    .flex-detail{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .detail-left{
+        width: 50%;
+    }
+    .img-size{
+        width: 100%;
+    }
+    .item{
+        margin-bottom: 20px;
+    }
+</style>
