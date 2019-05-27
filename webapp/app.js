@@ -1,13 +1,19 @@
 // import express
-var express = require('express');
-var app = express();
+var express = require('express'),
+    app = express();
+    mysql = require('mysql');
+
+
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // debug here
 app.get('/', function(req, res){
-  // res.render('ContactPage');
+  res.render('ContactPage');
+});
+
+app.get('/product', function(req, res){
   res.render('productPage')
 });
 
