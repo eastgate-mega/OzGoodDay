@@ -130,12 +130,15 @@ app.get('/product', function(req, res){
   res.render('productPage')
 });
 
-app.get('/login', function(req, res){
-  res.render('login');
+app.get('/customer/account/login', function(req, res){
+  res.render('customer_login');
 });
 
-app.get('/test', function(req, res){
-  res.render('test');
+
+
+// login and sign up function goes here
+app.get('/customer/account/new', function(req, res){
+  res.render('customer_new');
 });
 
 // start server here
