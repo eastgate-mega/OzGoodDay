@@ -50,7 +50,7 @@ app.set('view engine', 'ejs');
 // debug here
 app.get('/', function(req, res){
   // res.render('ContactPage');
-  res.render('productPage')
+  res.render('productPage');
 });
 
 app.get('/login', function(req, res){

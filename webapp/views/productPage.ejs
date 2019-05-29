@@ -4,9 +4,25 @@
     <div class='flex-detail'>
         <div class='detail-left'>
             <img class='img-size' src='images/location-icon.png'>
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class='detail-right'>
-            <div class='item'>Item Location</div>
+            <div class='item'>
+                <ol class='breadcrumb'>
+                    <li><a href="http://www.google.com">Home</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li class='active'>...</li>
+                </ol>
+            </div>
             <div class='item'>Item Name</div>
             <div class='item'>Item Price</div>
             <div class='item'>Item Description</div>
@@ -14,12 +30,12 @@
     </div>
 </div>
 <div>
-
 </div>
+
 <% include partials/footer %>
 <style>
     .form{
-        margin: 100px 80px;
+        margin: 5% 7%;
     }
     .flex-detail{
         display: flex;
@@ -27,12 +43,20 @@
         justify-content: space-between;
     }
     .detail-left{
-        width: 50%;
+        width: 48%;
+    }
+    .detail-right{
+        margin-left: 4%;
+        width: 48%;
     }
     .img-size{
         width: 100%;
     }
     .item{
         margin-bottom: 20px;
+    }
+    .breadcrumb{
+        background-color: snow;
+        padding: 10px 0;
     }
 </style>
