@@ -5,7 +5,8 @@ var express     = require("express"),
     mongoose    = require("mongoose"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
-    User        = require("./models/user");
+    User        = require("./models/user"),
+    Item        = require('./models/item')
 
 // MONGOOSE CONFIG
 mongoose.connect("mongodb://localhost/webapp", { useNewUrlParser: true });
@@ -27,7 +28,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // debug here
 app.get('/', function(req, res){
-  res.render('ContactPage');
+  res.redirect('/items');
 });
 
 app.get('/product', function(req, res){
@@ -81,6 +82,49 @@ app.get("/logout", function(req, res){
 app.get("/secret",isLoggedIn, function(req, res){
   
   res.render("login/secret");
+});
+
+//INDEX ROUTES
+app.get('/items', function(req, res){
+  Item.find({}, function(err, items){
+    if (err) {
+      console.log(err);
+      
+    } else {
+      res.render('item/index', {items: items});
+    }
+  });
+});
+
+//ITEM ROUTES
+//show create item page
+app.get('/items/new', function(req, res){
+  res.render('item/new');
+});
+
+//create item logic
+app.post('/items', function(req, res){
+  Item.create(req.body.item, function(err, item){
+    if (err) {
+      console.log(err);
+      
+    } else {
+      res.redirect('/items');
+    }
+  })
+});
+
+//show item
+app.get('/items/:id', function(req, res){
+  Item.findById(req.params.id, function(err, item){
+    if (err) {
+      console.log(err);
+      
+    } else {
+      res.render('item/show', {item: item});
+    }
+  });
+  
 });
 
 

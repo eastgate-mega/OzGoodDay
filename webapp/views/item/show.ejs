@@ -1,0 +1,180 @@
+<link type='text/css' rel='stylesheet' href="stylesheets/star-rating.min.css">
+<script type='text/javascript' src='js/star-rating.min.css'></script>
+<% include ../partials/header %>
+<title>Product Page</title>
+<div class='form'>
+    <div class='flex-detail'>
+        <div class='detail-left'>
+            <img class='img-size' src='images/location-icon.png'>
+            <div class="flex-row">
+                <div class="col-xs-6 col-md-3 flex-img">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3 flex-img">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3 flex-img">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3 flex-img">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class='detail-right'>
+            <div class='item'>
+                <ol class='breadcrumb'>
+                    <li><a href="http://www.google.com">Home</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li class='active'>...</li>
+                </ol>
+            </div>
+            <div class='item'><%= item.name %></div>
+            <div class='item'><%= item.price %></div>
+            <div class='item'><%= item.description %></div>
+            <input class='item-qty' type="number" step="1" min="1" max="" name="quantity" value="1" size="4">
+            <button type="button" class="btn btn-default">Add to Cart</button>
+        </div>
+    </div>
+</div>
+<div class='related-products'>
+    <h1>Reviews</h1>
+    <hr class='line'>
+    <div class='review-left'>
+    </div>
+    <div class='review-right'>
+        <div class='review-form'>
+            <h3 class='review-header'>Add a review</h3>
+            <p>Your email address will not be pubished. Required fields are marked*</p>
+            <p>Your rating</p>
+            <!-- <input id='score' value="0" type="number" class="rating" min="0" max="5" step="1" data-size="sm">
+            <input type="submit" value="评分" class="search_btn" name="submit" onclick="gradeScored()"> -->
+            <span class="star">
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+            </span>
+        </div>
+    </div>
+</div>
+<div class='related-products'>
+    <h1>Related products</h1>
+    <hr class='line'>
+    <div class='other-product'>
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+                <div>Item name</div>
+                <div>Item category</div>
+                <div>price</div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $(".rating-kv").rating();
+    });
+    function gradeScored(){
+        var score = $("#score").val();
+    }
+</script>
+<% include ../partials/footer %>
+<style>
+    .review-header{
+        margin: 0;
+    }
+    .review-form{
+        margin: 10px;
+    }
+    .review-left{
+        width: 60%;
+        height: 500px;
+        float: left;
+        background-color: red;
+    }
+    .review-right{
+        width: 39%;
+        height: 500px;
+        float: right;
+        border-style: solid;
+        border-width: 1px;
+        border-color: lightgray;
+        background-color: whitesmoke;
+    }
+    .line{
+        background-color: black;
+        margin-top: 0;
+        height: 5;
+    }
+    .related-products{
+        margin: 0 20px;
+        clear: both;
+    }
+    .item-qty{
+        width: 50px;
+        height: 30px;
+    }
+    .thumbnail{
+        margin-bottom: 0;
+    }
+    .flex-img{
+        padding: 0 5px;
+    }
+    .flex-row{
+        display: flex;
+        margin-top: 20px;
+    }
+    .form{
+        margin: 5% 7%;
+    }
+    .flex-detail{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .detail-left{
+        width: 48%;
+    }
+    .detail-right{
+        margin-left: 4%;
+        width: 48%;
+    }
+    .img-size{
+        width: 100%;
+    }
+    .item{
+        margin-bottom: 20px;
+    }
+    .breadcrumb{
+        background-color: snow;
+        padding: 10px 0;
+    }
+</style>
