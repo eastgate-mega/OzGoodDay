@@ -1,0 +1,27 @@
+.user-password{
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border-color: lightskyblue;
+    margin-bottom: 10px;
+
+}
+.btn-submit{
+    width: 200px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.inline-flex{
+    display: inline-flex;
+    flex-direction: column;
+}
+.loginPage{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,16 +1,15 @@
+<link rel='stylesheet' type="text/css" href='stylesheets/login_register.css'>
 <% include ../partials/header %> 
 <div class="container header">
-    <h1>Sign Up!</h1>
-    <div class="form default container">
-        <form action="/register" method="post">
-            <input type="text" name="username" placeholder="username" class="input">
-            <input type="password" name="password" placeholder="password" class="input">
-            <button class="button orange">Sign Up</button>
-        </form>
-    </div>
+    <form class='flex' action="/register" method="post">
+        <div class='inline-flex'>
+            <h1>Sign Up!</h1>
+            <input class='user-password' type="text" name="username" placeholder="username" class="input">
+            <input class='user-password' type="password" name="password" placeholder="password" class="input">
+            <button class="btn-submit">Sign Up</button>
+        </div>
+    </form>
 </div>
-
-
 
 <div class="container">
     <li><a href="/register">Sign Up!</a></li>

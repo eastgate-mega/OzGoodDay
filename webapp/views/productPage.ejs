@@ -1,3 +1,5 @@
+<link type='text/css' rel='stylesheet' href="stylesheets/star-rating.min.css">
+<script type='text/javascript' src='js/star-rating.min.css'></script>
 <% include partials/header %>
 <title>Product Page</title>
 <div class='form'>
@@ -44,40 +46,97 @@
     </div>
 </div>
 <div class='related-products'>
-    <h1>Related products</h1>
-    <div class='other-product'>
-            <div class="row">
-                    <div class="col-xs-6 col-md-3">
-                        <a href="#" class="thumbnail">
-                            <img src="images/location-icon.png" alt="...">
-                        </a>
-                        <div>Item name</div>
-                        <div>Item category</div>
-                        <div>price</div>
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                        <a href="#" class="thumbnail">
-                            <img src="images/location-icon.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                        <a href="#" class="thumbnail">
-                            <img src="images/location-icon.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-3">
-                        <a href="#" class="thumbnail">
-                            <img src="images/location-icon.png" alt="...">
-                        </a>
-                    </div>
-                </div>
+    <h1>Reviews</h1>
+    <hr class='line'>
+    <div class='review-left'>
+    </div>
+    <div class='review-right'>
+        <div class='review-form'>
+            <h3 class='review-header'>Add a review</h3>
+            <p>Your email address will not be pubished. Required fields are marked*</p>
+            <p>Your rating</p>
+            <!-- <input id='score' value="0" type="number" class="rating" min="0" max="5" step="1" data-size="sm">
+            <input type="submit" value="评分" class="search_btn" name="submit" onclick="gradeScored()"> -->
+            <span class="star">
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
+            </span>
+        </div>
     </div>
 </div>
-
+<div class='related-products'>
+    <h1>Related products</h1>
+    <hr class='line'>
+    <div class='other-product'>
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+                <div>Item name</div>
+                <div>Item category</div>
+                <div>price</div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="images/location-icon.png" alt="...">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $(".rating-kv").rating();
+    });
+    function gradeScored(){
+        var score = $("#score").val();
+    }
+</script>
 <% include partials/footer %>
 <style>
+    .review-header{
+        margin: 0;
+    }
+    .review-form{
+        margin: 10px;
+    }
+    .review-left{
+        width: 60%;
+        height: 500px;
+        float: left;
+        background-color: red;
+    }
+    .review-right{
+        width: 39%;
+        height: 500px;
+        float: right;
+        border-style: solid;
+        border-width: 1px;
+        border-color: lightgray;
+        background-color: whitesmoke;
+    }
+    .line{
+        background-color: black;
+        margin-top: 0;
+        height: 5;
+    }
     .related-products{
         margin: 0 20px;
+        clear: both;
     }
     .item-qty{
         width: 50px;
