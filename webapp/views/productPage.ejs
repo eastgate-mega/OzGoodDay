@@ -4,11 +4,23 @@
     <div class='flex-detail'>
         <div class='detail-left'>
             <img class='img-size' src='images/location-icon.png'>
-            <div class="row">
-                <div class="col-xs-6 col-md-3">
+            <div class="flex-row">
+                <div class="col-xs-6 col-md-3 flex-img">
                     <a href="#" class="thumbnail">
                         <img src="images/location-icon.png" alt="...">
                     </a>
+                </div>
+                <div class="col-xs-6 col-md-3 flex-img">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3 flex-img">
+                    <a href="#" class="thumbnail">
+                        <img src="images/location-icon.png" alt="...">
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3 flex-img">
                     <a href="#" class="thumbnail">
                         <img src="images/location-icon.png" alt="...">
                     </a>
@@ -26,14 +38,61 @@
             <div class='item'>Item Name</div>
             <div class='item'>Item Price</div>
             <div class='item'>Item Description</div>
+            <input class='item-qty' type="number" step="1" min="1" max="" name="quantity" value="1" size="4">
+            <button type="button" class="btn btn-default">Add to Cart</button>
         </div>
     </div>
 </div>
-<div>
+<div class='related-products'>
+    <h1>Related products</h1>
+    <div class='other-product'>
+            <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/location-icon.png" alt="...">
+                        </a>
+                        <div>Item name</div>
+                        <div>Item category</div>
+                        <div>price</div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/location-icon.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/location-icon.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/location-icon.png" alt="...">
+                        </a>
+                    </div>
+                </div>
+    </div>
 </div>
 
 <% include partials/footer %>
 <style>
+    .related-products{
+        margin: 0 20px;
+    }
+    .item-qty{
+        width: 50px;
+        height: 30px;
+    }
+    .thumbnail{
+        margin-bottom: 0;
+    }
+    .flex-img{
+        padding: 0 5px;
+    }
+    .flex-row{
+        display: flex;
+        margin-top: 20px;
+    }
     .form{
         margin: 5% 7%;
     }
