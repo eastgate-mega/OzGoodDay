@@ -5,11 +5,12 @@
 <div class='form'>
     <div class='flex-detail'>
         <div class='detail-left'>
-            <!-- <img class='img-size' src='images/location-icon.png'> -->
+            <img class='img-size' src='images/location-icon.png'>
             <div class="flex-row">
                 <div class="col-xs-6 col-md-3 flex-img">
                     <a href="#" class="thumbnail">
-                        <img src="images/location-icon.png" alt="...">
+                        <!-- <img src="images/location-icon.png" alt="..."> -->
+                        <img src="<%= item.image_path %>" alt="">
                     </a>
                 </div>
                 <div class="col-xs-6 col-md-3 flex-img">
@@ -33,13 +34,13 @@
             <div class='item'>
                 <ol class='breadcrumb'>
                     <li><a href="http://www.google.com">Home</a></li>
-                    <li><a href="#">Men</a></li>
+                    <li><a href="#"><%= item.category %></a></li>
                     <li class='active'>...</li>
                 </ol>
             </div>
             <div class='item'><%= item.product_name %></div>
-            <div class='item'><%= item.price %></div>
-            <div class='item'><%= item.description %></div>
+            <div class='item'><%= item.original_price %></div>
+            <div class='item'><%= item.product_description %></div>
             <input class='item-qty' type="number" step="1" min="1" max="" name="quantity" value="1" size="4">
             <button type="button" class="btn btn-default">Add to Cart</button>
         </div>
