@@ -22,6 +22,8 @@ router.get('/', function(req, res){
   
   //create item logic
   router.post('/', function(req, res){
+    console.log(req.body.item);
+    
     Item.create(req.body.item, function(err, item){
       if (err) {
         console.log(err);
