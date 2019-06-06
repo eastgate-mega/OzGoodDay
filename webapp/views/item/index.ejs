@@ -14,12 +14,15 @@
         <% items.forEach(function(item){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                   <div class="caption">
-                       <h4><%= item.name %></h4>
-                   </div>
-                   <div class="caption">
-                    <h4><%= item.price %></h4>
+                    <div>
+                        <img src="<%= item.image_path %>" alt="">
                     </div>
+                   <div class="caption">
+                       <h4><%= item.product_name %></h4>
+                   </div>
+                   <!-- <div class="caption">
+                    <h4><%= item.original_price %></h4>
+                    </div> -->
                    <p>
                        <a href="/items/<%= item._id %>" class="btn btn-primary">More Info</a>
                    </p>

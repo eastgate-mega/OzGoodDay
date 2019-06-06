@@ -1,12 +1,28 @@
-var express = require('express'),
-    router  = express.Router({mergeParams:true}),
-    User    = require('../models/user'),
-    passport = require('passport')
+const express = require('express'),
+router  = express.Router({mergeParams:true}),
+User    = require('../models/user'),
+passport = require('passport'),
+LocalStrategy = require("passport-local");
 
-// ==============
-// AUTH ROUTE 
-// ==============
-// show register form
+
+// PASSPORT CONFIGURATION
+router.use(require("express-session")({
+secret: "Once again Rusty wins cutest dog!",
+resave: false,
+saveUninitialized: false
+}));
+router.use(passport.initialize());
+router.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+router.get("/secret",isLoggedIn, function(req, res){
+
+    res.render("login/secret");
+    });
+
+
 router.get('/register', function(req, res){
     res.render('login/register');
   });
@@ -43,17 +59,13 @@ req.logout();
 res.redirect("/");
 });
 
-// secret page for user only
-router.get("/secret",isLoggedIn, function(req, res){
 
-res.render("login/secret");
-});
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect("/login");
-  }
+}
 
 module.exports = router;

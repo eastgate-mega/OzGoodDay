@@ -1,25 +1,161 @@
+
+
+
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <% include ../partials/header %>
-<div class="container">
-    <div class="row">
-        <h1 style="text-align: center">Create a New Item</h1>
-        <div style="width: 30%; margin: 25px auto;">
-            <form action="/items" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="item[name]" placeholder="name">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="item[price]" placeholder="price">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="item[description]" placeholder="description">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
-                </div>
-            </form>
-            <a href="/items">Go Back</a>
-        </div>
-    </div>
+<form class="form-horizontal" action="/items" method="POST">
+<fieldset>
+
+
+<legend>PRODUCTS INFORMATION</legend>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="supply_item_number">SUPPLY ITEM NUMBER</label>  
+  <div class="col-md-4">
+  <input id="supply_item_number" name="item[supply_item_number]" placeholder="SUPPLY ITEM NUMBER" class="form-control input-md" required="true" type="text">
+  </div>
 </div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>  
+  <div class="col-md-4">
+  <input id="product_name" name="item[product_name]" placeholder="PRODUCT NAME" class="form-control input-md" required="true" type="text">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="original_price">ORIGINAL PRICE</label>  
+  <div class="col-md-4">
+  <input id="original_price" name="item[original_price]" placeholder="product sell price" class="form-control input-md" required="true" type="text">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="cost_price">COST PRICE</label>  
+  <div class="col-md-4">
+  <input id="cost_price" name="item[cost_price]" placeholder="product cost price" class="form-control input-md" required="true" type="text">
+    
+  </div>
+</div>
+
+<!-- <div class="form-group">
+  <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>  
+  <div class="col-md-4">
+  <input id="product_name" name="product_name" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div> -->
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name_fr">BAR CODE</label>  
+  <div class="col-md-4">
+  <input id="bar_code" name="item[bar_code]" placeholder="BAR CODE" class="form-control input-md" required="true" type="text">
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="category">PRODUCT CATEGORY</label>
+  <div class="col-md-4">
+        <input id="category" name="item[category]" placeholder="PRODUCT CATEGORY" class="form-control input-md" required="true" type="text">
+    <!-- <select id="category" name="category" class="form-control">
+    </select> -->
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="quantity"> QUANTITY</label>  
+  <div class="col-md-4">
+  <input id="quantity" name="item[quantity]" placeholder="QUANTITY" class="form-control input-md" required="true" type="text">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_weight">PRODUCT WEIGHT</label>  
+  <div class="col-md-4">
+  <input id="product_weight" name="item[product_weight]" placeholder="PRODUCT WEIGHT" class="form-control input-md" required="true" type="text">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_description">PRODUCT DESCRIPTION</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="product_description" name="item[product_description]"></textarea>
+  </div>
+</div>
+
+<!-- <div class="form-group">
+    <label class="col-md-4 control-label" for="demention">DEMENTION</label>  
+    <div class="col-md-4">
+        <input id="demention" name="demention" placeholder="demention" class="form-control input-md" required="" type="text">    
+    </div>
+</div> -->
+
+      <!-- Search input-->
+      <div class="form-group">
+            <label class="col-md-4 control-label" for="tutorial">BRAND</label>
+            <div class="col-md-4">
+              <input id="brand" name="item[brand]" placeholder="brand" class="form-control input-md" required="" type="text">
+              
+            </div>
+          </div>
+
+<div class="form-group">
+        <label class="col-md-4 control-label" for="color">COLOR</label>
+        <div class="col-md-4">
+          <input id="color" name="item[color]" placeholder="color" class="form-control input-md" required="" type="text">
+          
+        </div>
+      </div>
+      
+
+
+<div class="form-group">
+        <label class="col-md-4 control-label" for="supplier">SUPPLIER</label>  
+        <div class="col-md-4">
+        <input id="supplier" name="item[supplier]" placeholder="supplier" class="form-control input-md" required="" type="text">
+        </div>
+      </div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="return">RETURN</label>  
+  <div class="col-md-4">
+  <input id="return" name="item[return]" placeholder="return" class="form-control input-md" required="true" type="text">
+  </div>
+</div>
+
+
+
+
+<!-- <div class="form-group">
+  <label class="col-md-4 control-label" for="percentage_discount">PERCENTAGE DISCOUNT</label>  
+  <div class="col-md-4">
+  <input id="percentage_discount" name="percentage_discount" placeholder="PERCENTAGE DISCOUNT" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div> -->
+
+
+
+
+    
+ <!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="image_path">image_path</label>
+  <div class="col-md-4">
+    <input id="image_path" name="item[image_path]" class="input-file" type="text" value="https://thumbs.dreamstime.com/t/demo-sign-icon-stamp-blue-vector-92101308.jpg">
+  </div>
+</div>
+
+<button class="btn btn-primary">Submit</button>
+
+</fieldset>
+</form>
+
 <% include ../partials/footer %>
 
