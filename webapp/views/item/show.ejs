@@ -1,5 +1,3 @@
-<link type='text/css' rel='stylesheet' href="stylesheets/star-rating.min.css">
-<script type='text/javascript' src='js/star-rating.min.css'></script>
 <% include ../partials/header %>
 <title>Product Page</title>
 <div class='form'>
@@ -55,18 +53,67 @@
             <h3 class='review-header'>Add a review</h3>
             <p>Your email address will not be pubished. Required fields are marked*</p>
             <p>Your rating</p>
-            <!-- <input id='score' value="0" type="number" class="rating" min="0" max="5" step="1" data-size="sm">
-            <input type="submit" value="评分" class="search_btn" name="submit" onclick="gradeScored()"> -->
-            <span class="star">
-                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
-                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
-                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
-                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
-                    <b class="glyphicon glyphicon-star  glyphicon glyphicon-star-empty"></b>
-            </span>
+            <div class="star">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+            </div>
+            <script>
+                var star = document.getElementsByClassName('glyphicon');
+                var isChose=false;
+
+                for(var i=0;i<star.length;i++){
+                    //鼠标悬浮时间，呼叫 function org 改变星星颜色
+                    star[i].onmouseover=function(){
+                        if(!isChose){
+                            this.select = true;
+                            for(var j=0;j<star.length;j++){
+                                if(star[j].select==true){
+                                    org(j);
+                                }
+                            }
+                        }
+                    }
+                    //鼠标移出时间，呼叫 function clear 清除星星颜色
+                    star[i].onmouseout = function(){
+                        if(!isChose){
+                            clear();
+                        }
+                    }
+                    //鼠标点击事件
+                    star[i].onclick = function(){
+                        this.select = true;
+                        isChose = true;
+                        clear();
+                        for(var i=0; i<star.length;i++){
+                            if(star[i].select==true){
+                                org(i);
+                            }
+                        }
+                    }
+                }
+
+                //改变星星star的样式的颜色
+                function org(s){
+                    for(var i=0;i<=s;i++){
+                        star[i].select = false;
+                        star[i].style.color='orange';
+                    }
+                }
+                //还原星星star的样式的颜色
+                function clear(){
+                    for(var i=0;i<star.length;i++){
+                        star[i].style.color='#c3c0c0';
+                    }
+                }
+
+            </script>
         </div>
     </div>
 </div>
+
 <div class='related-products'>
     <h1>Related products</h1>
     <hr class='line'>
@@ -98,16 +145,27 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     jQuery(document).ready(function(){
         $(".rating-kv").rating();
     });
     function gradeScored(){
         var score = $("#score").val();
     }
-</script>
+</script> -->
 <% include ../partials/footer %>
 <style>
+    .glyphicon-star{
+        display: inline-block;
+        margin: 0 1px;
+        width: 19px;
+        height: 19px;
+        color: #c3c0c0;
+        /* color: black; */
+        vertical-align: -2px;
+        cursor: pointer;
+    }
+
     .review-header{
         margin: 0;
     }
