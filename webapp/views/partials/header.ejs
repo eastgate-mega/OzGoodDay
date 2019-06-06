@@ -36,9 +36,18 @@
                     <span class='caret'></span>
                 </div>
                 <ul class='dropdown-menu'>
-                    <li><a href="/login">login</a></li>
+                        <% if(!currentUser){ %>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register">Sign Up</a></li>
+                        <% } else { %>
+                            <li>
+                                <a href="<%= currentUser._id %>/profile"><strong><%= currentUser.username %></strong>Profile</a>
+                            </li>
+                            <li><a href="/logout">Logout</a></li>
+                        <% } %>
+                    <!-- <li><a href="/login">login</a></li>
                     <li class='disabled'><a href="/login">Cart</a></li>
-                    <li>3-3</li>
+                    <li>3-3</li> -->
                 </ul>
             </li>
         </ul>

@@ -1,27 +1,19 @@
 const express = require('express'),
 router  = express.Router({mergeParams:true}),
 User    = require('../models/user'),
-passport = require('passport'),
-LocalStrategy = require("passport-local");
+passport = require('passport')
 
 
-// PASSPORT CONFIGURATION
-router.use(require("express-session")({
-secret: "Once again Rusty wins cutest dog!",
-resave: false,
-saveUninitialized: false
-}));
-router.use(passport.initialize());
-router.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
 
 router.get("/secret",isLoggedIn, function(req, res){
 
     res.render("login/secret");
     });
 
+router.get('/:id/profile', isLoggedIn, function(req, res){
+    res.render('login/user_profile');
+});
 
 router.get('/register', function(req, res){
     res.render('login/register');
@@ -41,7 +33,7 @@ User.register(new User({username: req.body.username}), req.body.password, functi
         return res.render('login/register');
     }
     passport.authenticate("local")(req, res, function(){
-        res.redirect("/secret");
+        res.redirect("/");
     });
 });
 });
@@ -49,7 +41,7 @@ User.register(new User({username: req.body.username}), req.body.password, functi
 //login logic
 //middleware
 router.post("/login", passport.authenticate("local", {
-successRedirect: "/secret",
+successRedirect: "/",
 failureRedirect: "/login"
 }) ,function(req, res){
 });
