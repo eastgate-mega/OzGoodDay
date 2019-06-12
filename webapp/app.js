@@ -1,14 +1,17 @@
 // import package
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    itemRouter  = require('./routes/items'),
-    passport    = require("passport"),
-    LocalStrategy = require("passport-local"),
-    customerRouter = require('./routes/customer'),
-    indexRouter = require('./routes/index'),
-    User    = require('./models/user')
+const express     = require("express"),
+      app         = express(),
+      bodyParser  = require("body-parser"),
+      mongoose    = require("mongoose"),
+      itemRouter  = require('./routes/items'),
+      passport    = require("passport"),
+      session     = require('express-session'),
+      LocalStrategy = require("passport-local"),
+      customerRouter = require('./routes/customer'),
+      indexRouter = require('./routes/index'),
+      User        = require('./models/user'),
+      flash       = require('connect-flash'),
+      mongoStore  = require('connect-mongo')(session)
 
 // MONGOOSE CONFIG
 mongoose.connect("mongodb://localhost/webapp", { useNewUrlParser: true });
@@ -18,10 +21,12 @@ app.use(express.static(__dirname + "/public"));
 
 
 // PASSPORT CONFIGURATION
-app.use(require("express-session")({
-  secret: "Once again Rusty wins cutest dog!",
+app.use(session({
+  secret: "OzGoodDay WebApp",
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  session = new mongoStore({ mongooseConnection: mongoose.connection}),
+  cookie: {maxAge: 180 * 60 * 1000 }//180 mins, 60s, 1000 ms
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -33,6 +38,7 @@ passport.deserializeUser(User.deserializeUser());
 //SHIT, the global var must define before router!!!!!!
 app.use(function(req, res, next){
   res.locals.currentUser = req.user;
+  res.locals.session = req.session;
   next();
 });
 
