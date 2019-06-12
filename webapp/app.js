@@ -25,7 +25,7 @@ app.use(session({
   secret: "OzGoodDay WebApp",
   resave: false,
   saveUninitialized: false,
-  session = new mongoStore({ mongooseConnection: mongoose.connection}),
+  session: new mongoStore({ mongooseConnection: mongoose.connection}),
   cookie: {maxAge: 180 * 60 * 1000 }//180 mins, 60s, 1000 ms
 }));
 app.use(passport.initialize());
