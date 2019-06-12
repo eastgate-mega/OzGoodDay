@@ -21,6 +21,7 @@ app.use(express.static(__dirname + "/public"));
 
 
 // PASSPORT CONFIGURATION
+// session config
 app.use(session({
   secret: "OzGoodDay WebApp",
   resave: false,
