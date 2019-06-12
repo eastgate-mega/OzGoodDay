@@ -32,15 +32,15 @@
             <div class='item'>
                 <ol class='breadcrumb'>
                     <li><a href="http://www.google.com">Home</a></li>
-                    <li><a href="#"><%= item.category %></a></li>
+                    <li><a href="#">Men</a></li>
                     <li class='active'>...</li>
                 </ol>
             </div>
             <div class='item'><%= item.product_name %></div>
-            <div class='item'><%= item.original_price %></div>
-            <div class='item'><%= item.product_description %></div>
+            <div class='item'><%= item.price %></div>
+            <div class='item'><%= item.description %></div>
             <input class='item-qty' type="number" step="1" min="1" max="" name="quantity" value="1" size="4">
-            <button type="button" class="btn btn-default" >Add to Cart</button>
+            <button type="button" class="btn btn-default">Add to Cart</button>
         </div>
     </div>
 </div>
@@ -52,14 +52,28 @@
     <div class='review-right'>
         <div class='review-form'>
             <h3 class='review-header'>Add a review</h3>
-            <p>Your email address will not be pubished. Required fields are marked*</p>
-            <p>Your rating</p>
-            <div class="star">
+            <div class='review'>
+                <p>Your email address will not be pubished. Required fields are marked*</p>
+                <p>Your rating</p>
+                <div class="star">
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
+                </div>
+            </div>
+            <div class='review textarea'>
+                <p>Your review *</p>
+                <textarea class='review-textarea'></textarea>
+            </div>
+            <div class='review name'>
+                <p>Name *</p>
+                <input class='input' type="text">
+            </div>
+            <div class='review email'>
+                <p>Email *</p>
+                <input class='input' type="text">
             </div>
             <script>
                 var star = document.getElementsByClassName('glyphicon');
@@ -146,14 +160,6 @@
         </div>
     </div>
 </div>
-<!-- <script type="text/javascript">
-    jQuery(document).ready(function(){
-        $(".rating-kv").rating();
-    });
-    function gradeScored(){
-        var score = $("#score").val();
-    }
-</script> -->
 <% include ../partials/footer %>
 <style>
     .glyphicon-star{
@@ -162,16 +168,25 @@
         width: 19px;
         height: 19px;
         color: #c3c0c0;
-        /* color: black; */
         vertical-align: -2px;
         cursor: pointer;
     }
-
+    .input{
+        width: 200px;
+        height: 30px;
+    }
+    .review{
+        margin-top: 10px;
+    }
+    .review-textarea{
+        width: 100%;
+        height: 80px;
+    }
     .review-header{
         margin: 0;
     }
     .review-form{
-        margin: 10px;
+        margin: 20px 30px;
     }
     .review-left{
         width: 60%;
