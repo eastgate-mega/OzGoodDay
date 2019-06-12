@@ -1,21 +1,31 @@
-progress:
+### progress:
 
-1.0 Project init
+### 1.0 Project init
 
-2.0 Header and Footer
 
-3.0 MongoDb module
+### 2.0 Header and Footer
 
-4.0 Login 
 
-5.0 Item display
+### 3.0 MongoDb module
 
-6.0 Shopping cart
+
+### 4.0 Login 
+
+
+### 5.0 Item display
+
+### 6.0 Shopping cart
+```
 6.1 shopping cart router
 6.2 add new item
+
 6.3 show shopping cart icon in header
+    6.3.1 shopping cart dropdown update
+    
 6.4 operate with shopping cart
 
-7.0 Payment
+```
 
-8.0 
+### 7.0 Payment
+
+### 8.0 
