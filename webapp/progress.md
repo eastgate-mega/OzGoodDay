@@ -21,6 +21,7 @@
 
 6.3 show shopping cart icon in header
     6.3.1 shopping cart dropdown update
+    6.3.2 shopping cart dropdown link can use
     
 6.4 operate with shopping cart
 
