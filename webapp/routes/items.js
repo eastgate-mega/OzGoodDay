@@ -16,7 +16,7 @@ router.get('/', function(req, res){
 });
 
 // CHART ROUTES
-router.get('/add-to-cart/:id', function(req, res){
+router.get('/add-to-cart/:id', isLoggedIn, function(req, res){
   var itemId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   Item.findById(itemId, function(err, item){
@@ -25,9 +25,9 @@ router.get('/add-to-cart/:id', function(req, res){
     } else {
       cart.add(item, itemId);
       req.session.cart = cart;
-      console.log(req.session.cart);
+      // console.log(req.session.cart);
       
-      res.redirect('/');
+      res.redirect('/items/'+ itemId);
     }
   });
 });
@@ -64,5 +64,12 @@ router.get('/:id', function(req, res){
   });
   
 });
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+      return next();
+  }
+  res.redirect("/login");
+}
 
 module.exports = router;

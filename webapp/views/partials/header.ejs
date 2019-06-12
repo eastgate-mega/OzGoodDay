@@ -36,6 +36,11 @@
                 <div data-toggle='dropdown' href='#' role='button' aria-haspopup="true" aria-expanded="true">
                     <i class="fa fa-shopping-cart"></i>
                     <span class='badge'>
+                            <% if(!session.cart){ %>
+                                0
+                            <% } else { %>
+                                <%= session.cart.totalQty%>
+                            <% } %>
                     </span>
                 </div>
                 <ul class='dropdown-menu'>

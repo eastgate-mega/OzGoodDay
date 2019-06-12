@@ -39,8 +39,11 @@
             <div class='item'><%= item.product_name %></div>
             <div class='item'><%= item.original_price %></div>
             <div class='item'><%= item.product_description %></div>
-            <input class='item-qty' type="number" step="1" min="1" max="" name="quantity" value="1" size="4">
-            <button type="button" class="btn btn-default" >Add to Cart</button>
+            <!-- <input class='item-qty' type="number" step="1" min="1" max="" name="quantity" value="1" size="4"> -->
+            <!-- <button type="button" class="btn btn-default" >Add to Cart</button> -->
+            <p>
+                    <a href="/items/add-to-cart/<%= item._id %>" class="btn btn-primary">Add To Cart</a>
+            </p>
         </div>
     </div>
 </div>
