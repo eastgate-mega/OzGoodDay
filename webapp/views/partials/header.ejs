@@ -60,7 +60,7 @@
                             <li><a href="/register">Sign Up</a></li>
                         <% } else { %>
                             <li>
-                                <a href="<%= currentUser._id %>/profile"><strong><%= currentUser.username %></strong>Profile</a>
+                                <a href="/<%= currentUser._id %>/profile"><strong><%= currentUser.username %></strong>Profile</a>
                             </li>
                             <li><a href="/logout">Logout</a></li>
                         <% } %>
