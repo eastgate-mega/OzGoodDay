@@ -24,6 +24,7 @@
     6.3.2 shopping cart dropdown link can use
     
 6.4 operate with shopping cart
+    6.4.1 shopping cart page init
 
 ```
 
