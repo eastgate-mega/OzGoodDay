@@ -28,8 +28,27 @@
             <li class='navbar-brand headerItem'>Women</li>
             <li class='navbar-brand headerItem'>Accessories</li>
             <li class='navbar-brand headerItem'>About</li>
-            <!-- <li class='navbar-brand headerItem' >Contact Us</li> -->
             <a href="/contact" class='navbar-brand headerItem'>Contact Us</a>
+
+            <!-- only login user can see shopping cart -->
+            <% if(currentUser){ %>
+            <li class='navbar-brand headerItem'>
+                <div data-toggle='dropdown' href='#' role='button' aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class='badge'>
+                            <% if(!session.cart){ %>
+                                0
+                            <% } else { %>
+                                <%= session.cart.totalQty%>
+                            <% } %>
+                    </span>
+                </div>
+                <ul class='dropdown-menu'>
+                            <li><a href="/items/cart">Check out</a></li>
+                            <li><a href="#">Delete All</a></li>
+                </ul>
+            </li>
+            <% } %>
             <li class='navbar-brand headerItem'>
                 <div data-toggle='dropdown' href='#' role='button' aria-haspopup="true" aria-expanded="true">
                     <i class="fas fa-user-alt"></i>
@@ -45,9 +64,6 @@
                             </li>
                             <li><a href="/logout">Logout</a></li>
                         <% } %>
-                    <!-- <li><a href="/login">login</a></li>
-                    <li class='disabled'><a href="/login">Cart</a></li>
-                    <li>3-3</li> -->
                 </ul>
             </li>
         </ul>
