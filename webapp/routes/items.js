@@ -37,6 +37,9 @@ router.get('/cart', function(req, res){
     res.redirect('/')
   } else {
     var cart = new Cart(req.session.cart);
+    //show cart contant
+    console.log(cart);
+    
     res.render('shop_cart/cart', {items: cart.generateArray(), cart: cart, totalPrice: cart.totalPrice});
   }
 });
