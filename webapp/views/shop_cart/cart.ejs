@@ -5,7 +5,6 @@
 
 <script>
     var checkoutitem='';
-    var checkoutpage = document.getElementById('checkoutPage');
 
     //用ajax获取接口数据
     var xmlhttp = new XMLHttpRequest();
@@ -27,7 +26,7 @@
     
     function showItem(){
         for(var i=1; i<checkoutitem.length; i++){
-            checkoutpage += "<div class='checkoutItem'><% checkitem[i].name %></div>"
+            document.getElementById('checkoutPage').innerHTML += "<div class='checkoutItem'><% checkitem[i].name %></div>"
         }
     }
 
