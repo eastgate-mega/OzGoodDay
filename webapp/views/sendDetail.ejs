@@ -1,0 +1,63 @@
+<% include ../partials/header %> 
+<!-- dialog对话框 邮寄地址表单显示 -->
+<div id='dialog-form' title='dialog名字'>
+    <form>
+        <label>Name</label>
+        <input type="text" name='name' id='name'>
+        <label>Address</label>
+        <input type="text" name='address' id='address'>
+        <label>Phone</label>
+        <input type="text" name='phone' id='phone'>
+    </form>
+</div>
+<div>
+    <button onclick='test()'>测试</button>
+</div>
+<div class='addresslist' id='addresslist'></div>
+
+
+<script>
+    var addressList = '';
+
+    function test(){
+        $('#dialog-form').dialog('open');
+    }
+
+    $('#dialog-form').dialog({
+        autoOpen:false,
+        height: 300,//表单高度
+        width: 350,//表单长度
+        modal:true,
+        button: {
+            //用于确认邮箱地址添加并关闭dialog
+            "确认": function(){
+
+                $(this).dialog('close');
+            },
+            //取消所有更改并关闭dialog
+            'Cancel': function(){
+                $(this).dialog('close');
+            }
+        },
+        close: function(){
+
+        }
+
+    })
+
+    var xmlhttp = new XMLHttpRequest();
+    var url;
+    var type = 'POST';
+    xmlhttp.open(type, url, true);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            addressList = xmlhttp.response;
+        }
+    }
+
+    addressList.forEach(element => {
+        document.getElementById('addresslist').innerHTML = '<div><span>'+ element.name + '</span><span>' + element.address + '</span><span>' + element.phone + '</span></div>';
+    });
+</script>
