@@ -43,6 +43,20 @@ router.get('/cart', function(req, res){
     res.render('shop_cart/cart', {items: cart.generateArray(), cart: cart, totalPrice: cart.totalPrice});
   }
 });
+
+//try to write API
+router.get('/getCart', function(req, res){
+  if (!req.session.cart) {
+    res.redirect('/')
+  } else {
+    var cart = new Cart(req.session.cart);
+    //show cart contant
+    console.log(cart);
+    
+    
+    res.send({items: cart.generateArray()});
+  }
+});
   
 //ITEM ROUTES
 //show create item page

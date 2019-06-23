@@ -1,40 +1,79 @@
-<h1>11</h1>
-<p>
-    <%=   cart  %>
-</p>
+<% include ../partials/header %> 
+<div class='checkoutPage' id='checkoutPage'></div>
+
+
 
 <script>
+    var checkoutitem='';
+
+    //用ajax获取接口数据
+    var xmlhttp = new XMLHttpRequest();
+    var url = 'api接口';//接口
+    var type = 'GET';//方法
+    xmlhttp.open(type, url, true);//方法，接口，异步操作
+    xmlhttp.send();//发送请求
+
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.status==200 && xmlhttp.readyState==4){
+            checkoutitem = JSON.parse(xmlhttp.response);
+            if(checkoutitem != ''){
+                showItem();
+            }
+        }
+        
+    }
+
+    
+    function showItem(){
+        for(var i=1; i<checkoutitem.length; i++){
+            document.getElementById('checkoutPage').innerHTML += "<div class='checkoutItem'><% checkitem[i].name %></div>"
+        }
+    }
+
+
     // var post = JSON.parse('<%- JSON.stringify(totalPrice)%>');
     // console.log(post);
-    var getJSON = function(url){
-        return new Promise(function(resolve, reject){
-            var xhr = new XMLHttpRequest();
-            xhr.open('get', url, true);
-            xhr.responseType = 'json';
-            xhr.onload = function(){
-                var status = xhr.status;
-                if(status == 200)
-                    resolve(status);
-                else
-                    reject(status);
-            };
-            xhr.send();
-        });
-    };
 
-    getJSON('http://localhost：3000').then(function(data){
-        alert('Your Json result is: ' + data);//For debug
+    // var getJSON = function(url){
+    //     return new Promise(function(resolve, reject){
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('get', url, true);
+    //         xhr.responseType = 'json';
+    //         xhr.onload = function(){
+    //             var status = xhr.status;
+    //             if(status == 200)
+    //                 resolve(status);
+    //             else
+    //                 reject(status);
+    //         };
+    //         xhr.send();
+    //     });
+    // };
 
-        var html = '<ul>';
-        for(var i=0;i<data.length;i++){
-            html+= '<li>' + 'jobID is: '+data[i].jobID + ', file path is' + data[i].filePath + '</li>';
-        }
-        html +='</ul>';
+    // getJSON('http://localhost：3000').then(function(data){
+    //     alert('Your Json result is: ' + data);//For debug
 
-        document.getElementById('result').innerHTML = html;
+    //     var html = '<ul>';
+    //     for(var i=0;i<data.length;i++){
+    //         html+= '<li>' + 'jobID is: '+data[i].jobID + ', file path is' + data[i].filePath + '</li>';
+    //     }
+    //     html +='</ul>';
 
-    },function(status){
-        alert('Something wrong');
-    })
+    //     document.getElementById('result').innerHTML = html;
+
+    // },function(status){
+    //     alert('Something wrong');
+    // })
 
 </script>
+<style>
+    .checkoutPage{
+        height: 80%;
+        margin: 0 20px;
+    }
+    .checkoutItem{
+        margin: 0 10px;
+        border: 1px;
+
+    }
+</style>
