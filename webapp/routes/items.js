@@ -12,7 +12,11 @@ router.get('/', function(req, res){
         console.log(err);
 
       } else {
-        res.render('item/index', {items: foundItems});
+        var noMatch;
+        if (foundItems.length < 1) {
+          noMatch = 'no products match, please try again!!!'
+        }
+        res.render('item/index', {items: foundItems, noMatch: noMatch});
       }
     })
   } else {

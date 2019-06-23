@@ -11,6 +11,14 @@
      </header>
      
      <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        
+        <% if(noMatch !== undefined) {%>
+            <div class="col-md-6"></div>
+                <h3><%= noMatch%></h3>
+            </div>
+        <% } %>
+        
+
         <% items.forEach(function(item){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
