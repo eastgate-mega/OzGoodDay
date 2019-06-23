@@ -1,8 +1,7 @@
 var express = require('express'),
     router  = express.Router({mergeParams: true}),
     Item    = require('../models/item'),
-    Cart    = require('../models/cart'),
-    mongoose_fuzzy_searching = require('mongoose-fuzzy-searching')
+    Cart    = require('../models/cart')
 
 //INDEX ROUTES
 router.get('/', function(req, res){
