@@ -1,10 +1,24 @@
 var express = require('express'),
     router  = express.Router({mergeParams: true}),
     Item    = require('../models/item'),
-    Cart    = require('../models/cart')
+    Cart    = require('../models/cart'),
+    mongoose_fuzzy_searching = require('mongoose-fuzzy-searching')
 
 //INDEX ROUTES
 router.get('/', function(req, res){
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    Item.find({product_name: regex}, function(err, foundItems){
+      if (err) {
+        console.log(err);
+
+      } else {
+        res.render('item/index', {items: foundItems});
+      }
+    })
+  } else {
+    
+    //get all items form DB
     Item.find({}, function(err, items){
       if (err) {
         console.log(err);
@@ -13,6 +27,7 @@ router.get('/', function(req, res){
         res.render('item/index', {items: items});
       }
     });
+  }
 });
 
 // CHART ROUTES
@@ -90,6 +105,14 @@ router.get('/:id', function(req, res){
   });
   
 });
+
+
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+
+
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){

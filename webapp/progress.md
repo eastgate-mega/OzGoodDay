@@ -76,6 +76,9 @@
 
 ==================================================
 ### 8 Search
+8.1 add search bar in header
+
+8.2 fuzzy search and full text search according to [product-name]
 
 ==================================================
 ### 9 Review system

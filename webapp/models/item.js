@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var mongoose_fuzzy_searching = require('mongoose-fuzzy-searching');
 
 var itemSchema = new Schema({
     product_name: {type: String},
@@ -27,6 +28,8 @@ var itemSchema = new Schema({
     sold_amount: {type: Number, default: 0}
 
 });
+
+// itemSchema.plugin(mongoose_fuzzy_searching, {fields: ['product_name', 'product_description']});
 
 
 module.exports = mongoose.model('Item', itemSchema);
