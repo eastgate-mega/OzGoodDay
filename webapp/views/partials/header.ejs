@@ -30,6 +30,7 @@
             <li class='navbar-brand headerItem'>About</li>
             <a href="/contact" class='navbar-brand headerItem'>Contact Us</a>
 
+
             <!-- only login user can see shopping cart -->
             <% if(currentUser){ %>
             <li class='navbar-brand headerItem'>
@@ -66,6 +67,14 @@
                         <% } %>
                 </ul>
             </li>
+            <!-- search bar here -->
+            <form class="form-inline active-cyan-3 active-cyan-4 navbar-brand headerItem" method="GET" action="/items">
+
+                <input class="form-control form-control-sm ml-3 w-75" type="text" name="search" placeholder="Search" aria-label="Search">
+                <button>
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </form>
         </ul>
     </div>
 </nav>
