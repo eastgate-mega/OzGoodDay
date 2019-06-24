@@ -5,6 +5,7 @@ var express = require('express'),
 
 //INDEX ROUTES
 router.get('/', function(req, res){
+  var noMatch;
   if (req.query.search) {
     const regex = new RegExp(escapeRegex(req.query.search), 'gi');
     Item.find({product_name: regex}, function(err, foundItems){
@@ -12,7 +13,6 @@ router.get('/', function(req, res){
         console.log(err);
 
       } else {
-        var noMatch;
         if (foundItems.length < 1) {
           noMatch = 'no products match, please try again!!!'
         }
