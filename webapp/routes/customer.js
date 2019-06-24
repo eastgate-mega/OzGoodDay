@@ -19,10 +19,6 @@ router.get('/register', function(req, res){
     res.render('login/register');
   });
 
-  //test
-  router.get('/send', function(req, res){
-    res.render('sendDetail');
-  });
   
 // show login form
 router.get("/login", function(req, res){

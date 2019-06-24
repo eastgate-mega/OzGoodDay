@@ -27,7 +27,7 @@ router.get('/', function(req, res){
         console.log(err);
         
       } else {
-        res.render('item/index', {items: items});
+        res.render('item/index', {items: items, noMatch: noMatch});
       }
     });
   }
