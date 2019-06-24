@@ -9,6 +9,56 @@
              </p>
          </div>
      </header>
+
+     <link rel="stylesheet" type='text/css' href="stylesheets/nav.css">
+     <nav class="navbar navbar-main navbar-default" role="navigation" style="opacity: 1;">
+          <div class="container">
+            
+            <!-- Collect the nav links,  -->
+            <div class="collapse navbar-collapse navbar-1" style="margin-top: 0px;">            
+              <ul class="nav navbar-nav">
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">The Most Popular</a></li>
+                <li class="dropdown megaDropMenu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">Shopping items <i class="fa fa-angle-down ml-5"></i></a>
+                  <ul class="dropdown-menu row">
+                    <li class="col-sm-3 col-xs-12">
+                      <ul class="list-unstyled">
+                        <li>Price</li>
+                        <li><a href="#">0-50</a></li>
+                        <li><a href="#">50-100</a></li>
+                        <li><a href="#">100-200</a></li>
+                     </ul>
+                    </li>
+                    <li class="col-sm-3 col-xs-12">
+                      <ul class="list-unstyled">
+                        <li>Category</li>
+                        <li><a href="#">item </a></li>
+                        <li><a href="#">item </a></li>
+                        <li><a href="#">item </a></li>
+                       </ul>
+                    </li>
+                    <li class="col-sm-3 col-xs-12">
+                      <ul class="list-unstyled">
+                        <li>Brand</li>
+                        <li><a href="#">item </a></li>
+                        <li><a href="#">item </a></li>
+                        <li><a href="#">item </a></li>
+                     </ul>
+                    </li>
+                    <li class="col-sm-3 col-xs-12">
+                        <ul class="list-unstyled">
+                        <li>some image here</li>
+                     </ul>
+                      <img src="https://lh3.googleusercontent.com/-uwagl9sPHag/WM7WQa00ynI/AAAAAAAADtA/hio87ZnTpakcchDXNrKc_wlkHEcpH6vMwCJoC/w140-h148-p-rw/profile-pic.jpg" class="img-responsive" alt="menu-img">
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div>
+        </nav>
+  
      
      <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         
@@ -39,5 +89,56 @@
         <% }); %>
     </div>
 </div>
+
+ <script src="js/jquery-3.1.1.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script type="text/javascript">
+    ! function($, n, e) {
+      var o = $();
+      $.fn.dropdownHover = function(e) {
+        return "ontouchstart" in document ? this : (o = o.add(this.parent()), this.each(function() {
+          function t(e) {
+            o.find(":focus").blur(), h.instantlyCloseOthers === !0 && o.removeClass("open"), n.clearTimeout(c), i.addClass("open"), r.trigger(a)
+          }
+          var r = $(this),
+            i = r.parent(),
+            d = {
+              delay: 100,
+              instantlyCloseOthers: !0
+            },
+            s = {
+              delay: $(this).data("delay"),
+              instantlyCloseOthers: $(this).data("close-others")
+            },
+            a = "show.bs.dropdown",
+            u = "hide.bs.dropdown",
+            h = $.extend(!0, {}, d, e, s),
+            c;
+          i.hover(function(n) {
+            return i.hasClass("open") || r.is(n.target) ? void t(n) : !0
+          }, function() {
+            c = n.setTimeout(function() {
+              i.removeClass("open"), r.trigger(u)
+            }, h.delay)
+          }), r.hover(function(n) {
+            return i.hasClass("open") || i.is(n.target) ? void t(n) : !0
+          }), i.find(".dropdown-submenu").each(function() {
+            var e = $(this),
+              o;
+            e.hover(function() {
+              n.clearTimeout(o), e.children(".dropdown-menu").show(), e.siblings().children(".dropdown-menu").hide()
+            }, function() {
+              var t = e.children(".dropdown-menu");
+              o = n.setTimeout(function() {
+                t.hide()
+              }, h.delay)
+            })
+          })
+        }))
+      }, $(document).ready(function() {
+        $('[data-hover="dropdown"]').dropdownHover()
+      })
+    }(jQuery, this);
+  </script>
 
 <% include ../partials/footer %>
