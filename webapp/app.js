@@ -10,7 +10,7 @@ const express     = require("express"),
       customerRouter = require('./routes/customer'),
       indexRouter = require('./routes/index'),
       User        = require('./models/user'),
-      flash       = require('connect-flash'),
+      // flash       = require('connect-flash'),
       mongoStore  = require('connect-mongo')(session)
 
 // MONGOOSE CONFIG
