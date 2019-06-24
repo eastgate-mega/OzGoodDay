@@ -4,16 +4,16 @@ var Schema = mongoose.Schema;
 var itemSchema = new Schema({
     product_name: {type: String},
     supply_item_number: {type: String},
-    original_price: {type: Number},
-    cost_price: {type: Number},
+    original_price: {type: Number}, //需要分类
+    cost_price: {type: Number}, 
     bar_code: {type: Number},
-    category: {type: String},
+    category: {type: String}, //需要分类
     quantity: {type: Number},
     // unit of measurement is set to be 'g'
     weight: {type: Number},
     product_description: {type: String},
     // demention: {type: Number},
-    brand: {type: String, default: 'None'},
+    brand: {type: String, default: 'None'}, //需要分类
     //need to be changed to enum type in the furture
     color: {type: String, default: 'default'},
     supplier: {type: String, default: 'None'},
@@ -24,7 +24,7 @@ var itemSchema = new Schema({
     },
     create_data: {type: Date, default: Date.now},
     last_modified: {type: Date, default: Date.now},
-    sold_amount: {type: Number, default: 0}
+    sold_amount: {type: Number, default: 0} //需要分类
 
 });
 
