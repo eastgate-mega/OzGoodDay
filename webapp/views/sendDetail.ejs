@@ -1,19 +1,44 @@
-<% include ../partials/header %> 
+<% include ./partials/header %> 
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
 <!-- dialog对话框 邮寄地址表单显示 -->
-<div id='dialog-form' title='dialog名字'>
-    <form>
+<div class='dialog-form' id='dialog-form' title='dialog名字'>
+    <form><fieldset>
         <label>Name</label>
-        <input type="text" name='name' id='name'>
+        <input type="text" class='dialogInput' name='name' id='name'>
         <label>Address</label>
-        <input type="text" name='address' id='address'>
+        <input type="text" class='dialogInput' name='address' id='address'>
         <label>Phone</label>
-        <input type="text" name='phone' id='phone'>
-    </form>
+        <input type="text" class='dialogInput' name='phone' id='phone'>
+    </fieldset></form>
 </div>
-<div>
-    <button onclick='test()'>测试</button>
+
+
+<div class='addresslist' id='addresslist'>
+    <table id='addresstable' class=''>
+        <thead>
+            <tr class=''>
+                <th class='addresstable-th'>Name</th>
+                <th class='addresstable-th'>Address</th>
+                <th class='addresstable-th'>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class='addresstable-td'>1</td>
+                <td class='addresstable-td'>2</td>
+                <td class='addresstable-td'>3</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-<div class='addresslist' id='addresslist'></div>
+
+
+<div><button onclick='test()'>测试</button></div>
+
 
 
 <script>
@@ -23,7 +48,8 @@
         $('#dialog-form').dialog('open');
     }
 
-    $('#dialog-form').dialog({
+    $(function(){
+        $('#dialog-form').dialog({
         autoOpen:false,
         height: 300,//表单高度
         width: 350,//表单长度
@@ -42,22 +68,59 @@
         close: function(){
 
         }
-
     })
+})
 
-    var xmlhttp = new XMLHttpRequest();
-    var url;
-    var type = 'POST';
-    xmlhttp.open(type, url, true);
-    xmlhttp.send();
+    // var xmlhttp = new XMLHttpRequest();
+    // var url;
+    // var type = 'POST';
+    // xmlhttp.open(type, url, true);
+    // xmlhttp.send();
 
-    xmlhttp.onreadystatechange=function(){
-        if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
-            addressList = xmlhttp.response;
-        }
-    }
+    // xmlhttp.onreadystatechange=function(){
+    //     if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+    //         addressList = xmlhttp.response;
+    //     }
+    // }
 
-    addressList.forEach(element => {
-        document.getElementById('addresslist').innerHTML = '<div><span>'+ element.name + '</span><span>' + element.address + '</span><span>' + element.phone + '</span></div>';
-    });
+    // addressList.forEach(element => {
+    //     document.getElementById('addresslist').innerHTML = '<div><span>'+ element.name + '</span><span>' + element.address + '</span><span>' + element.phone + '</span></div>';
+    // });
 </script>
+
+<style>
+    fieldset{
+        border: 0;
+    }
+    .dialog-form{
+        width: 100%;
+    }
+    .dialogInput{
+        display: block;
+        width: 100%;
+        padding: 2px 5px;
+        margin-bottom: 10px;
+    }
+    
+    .ui-dialog{
+        padding: 0;
+    }
+    .ui-widget-header {
+        background: 0;
+        background-color: lightblue;
+    }
+        .addresslist{
+            width: 350px; 
+            margin: 20px 0; 
+        }
+        .addresstable{
+            margin: 1em 0; 
+            border-collapse: collapse; 
+            width: 100%; 
+        }
+        .addresstable-th .addresstable-td{
+            border: 1px solid #eee; 
+            padding: .6em 10px; 
+            text-align: left; 
+        }
+</style>
