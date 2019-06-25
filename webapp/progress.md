@@ -71,6 +71,11 @@
 
 7.3 display order in user profile *
 
+7.4 Paypal checkout
+    7.4.1 add paypal button 
+    7.4.2 payment logic
+    7.4.3 intergrate with right order *
+
 
 ```
 

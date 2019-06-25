@@ -47,9 +47,19 @@
                 <ul class='dropdown-menu'>
                             <li><a href="/items/cart">Check out</a></li>
                             <li><a href="#">Delete All</a></li>
+                            <!-- <li>
+                                <form action="/payment/pay" method="POST">
+                                    <input type="submit" value="Buy">
+                                </form>
+                            </li> -->
                 </ul>
             </li>
             <% } %>
+            <li>
+                    <form action="/payment/pay" method="POST">
+                        <input type="submit" value="Buy">
+                    </form>
+                </li>
             <li class='navbar-brand headerItem'>
                 <div data-toggle='dropdown' href='#' role='button' aria-haspopup="true" aria-expanded="true">
                     <i class="fas fa-user-alt"></i>

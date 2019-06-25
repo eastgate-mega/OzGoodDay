@@ -10,8 +10,8 @@ const express     = require("express"),
       customerRouter = require('./routes/customer'),
       indexRouter = require('./routes/index'),
       User        = require('./models/user'),
-      // flash       = require('connect-flash'),
-      mongoStore  = require('connect-mongo')(session)
+      mongoStore  = require('connect-mongo')(session),
+      paymentRouter = require('./routes/payment')
 
 // MONGOOSE CONFIG
 mongoose.connect("mongodb://localhost/webapp", { useNewUrlParser: true });
@@ -35,6 +35,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
 //local var 'currentUser'.
 //SHIT, the global var must define before router!!!!!!
 app.use(function(req, res, next){
@@ -47,6 +48,7 @@ app.use(function(req, res, next){
 app.use('/items', itemRouter);
 app.use('/', customerRouter);
 app.use('/', indexRouter);
+app.use('/payment', paymentRouter);
 
 
 
