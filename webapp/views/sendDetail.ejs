@@ -8,68 +8,104 @@
 <div class='dialog-form' id='dialog-form' title='dialog名字'>
     <form><fieldset>
         <label>Name</label>
-        <input type="text" class='dialogInput' name='name' id='name'>
+        <input type="text" class='dialogInput' name='name' id='name' onblur="checkValue(name, value)">
         <label>Address</label>
-        <input type="text" class='dialogInput' name='address' id='address'>
+        <input type="text" class='dialogInput' name='address' id='address' onblur="checkValue(name, value)">
         <label>Phone</label>
-        <input type="text" class='dialogInput' name='phone' id='phone'>
+        <input type="text" class='dialogInput' name='phone' id='phone' oninput="value=value.replace(/[^0-9]/g,'')" onblur="checkValue(name, value)">
     </fieldset></form>
 </div>
 
 
-<div class='addresslist' id='addresslist'>
-    <table id='addresstable' class=''>
+<div class='addresslist ui-widget' id='addresslist'>
+    <table id='addresstable' class='addresstable ui-widget ui-widget-content'>
         <thead>
-            <tr class=''>
-                <th class='addresstable-th'>Name</th>
-                <th class='addresstable-th'>Address</th>
-                <th class='addresstable-th'>Phone</th>
+            <tr class='ui-widget-header'>
+                <th class='addresstableth'>Name</th>
+                <th class='addresstableth'>Address</th>
+                <th class='addresstableth'>Phone</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class='addresstable-td'>1</td>
-                <td class='addresstable-td'>2</td>
-                <td class='addresstable-td'>3</td>
+                <td class='addresstabletd'>1</td>
+                <td class='addresstabletd'>2</td>
+                <td class='addresstabletd'>3</td>
             </tr>
         </tbody>
     </table>
 </div>
 
 
-<div><button onclick='test()'>测试</button></div>
+<div><button id='create-address'>测试</button></div>
 
 
 
 <script>
     var addressList = '';
 
-    function test(){
-        $('#dialog-form').dialog('open');
-    }
+    $("#create-address").button().click(function(){
+        $("#dialog-form").dialog('open');
+    });
 
     $(function(){
         $('#dialog-form').dialog({
-        autoOpen:false,
-        height: 300,//表单高度
-        width: 350,//表单长度
-        modal:true,
-        button: {
-            //用于确认邮箱地址添加并关闭dialog
-            "确认": function(){
+            autoOpen:false,
+            height: 300,//表单高度
+            width: 350,//表单长度
+            modal:true,
+            buttons: {
+                //用于确认邮箱地址添加并关闭dialog
+                "确认": function(){
 
-                $(this).dialog('close');
+                    $(this).dialog('close');
+                },
+                //取消所有更改并关闭dialog
+                'Cancel': function(){
+                    $(this).dialog('close');
+                }
             },
-            //取消所有更改并关闭dialog
-            'Cancel': function(){
-                $(this).dialog('close');
+            close: function(){
+
             }
-        },
-        close: function(){
+        });
+    });
+
+    function checkValue(obj, value){
+        console.log(obj);
+        console.log(value);
+        var newElement = '';
+        var target;
+        var reg='';
+        //验证名字
+        if(obj == 'name'){
+            reg = /^[a-zA-Z\s*]{4,16}$/;
+            if(value == '' || reg.test(value) == false )
+            {
+                newElement = "<p class='dialog-p'>Name cannot be null</p>";
+                target = document.getElementById(obj);
+                insertAfter(newElement,target);
+            }
+        }
+        //验证地址
+        if(obj == 'address'){
 
         }
-    })
-})
+        //验证电话
+        if(obj == 'phone'){
+
+        }
+    }
+
+    function insertAfter(newElement, target){
+        console.log(newElement);
+        console.log(target);
+        var parent = target.parentNode;
+        if(parent.lastChild == target)
+            parent.appendChild(newElement);
+        else
+            parent.insertBefore(newElement, target.nextSibling);
+    }
 
     // var xmlhttp = new XMLHttpRequest();
     // var url;
@@ -93,7 +129,10 @@
         border: 0;
     }
     .dialog-form{
-        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
     }
     .dialogInput{
         display: block;
@@ -101,26 +140,33 @@
         padding: 2px 5px;
         margin-bottom: 10px;
     }
+
+    .dialog-p{
+        display: block;
+    }
     
     .ui-dialog{
         padding: 0;
+
     }
     .ui-widget-header {
         background: 0;
         background-color: lightblue;
     }
-        .addresslist{
-            width: 350px; 
-            margin: 20px 0; 
-        }
-        .addresstable{
-            margin: 1em 0; 
-            border-collapse: collapse; 
-            width: 100%; 
-        }
-        .addresstable-th .addresstable-td{
-            border: 1px solid #eee; 
-            padding: .6em 10px; 
-            text-align: left; 
-        }
+    .addresslist{
+        width: 100%; 
+        margin: 20px 0; 
+        padding: 0px 30px;
+    }
+    .addresstable{
+        border-collapse: collapse; 
+        width: 100%; 
+    }
+
+
+    .addresstableth, .addresstabletd{
+        border: 2px solid #eee; 
+        padding: 5px; 
+        text-align: left; 
+    }
 </style>

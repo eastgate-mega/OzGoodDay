@@ -74,7 +74,8 @@ router.post('/pay', (req, res) => {
             },
             "amount": {
                 "currency": "USD",
-                "total": '1.00'
+                // "total": '1.00',
+                "total": totalPrice
             },
             "description": "This is the payment description."
         }]
@@ -109,7 +110,7 @@ router.get('/success', function (req, res) {
         "transactions": [{
             "amount": {
                 "currency": "AUD",
-                "total": '1.00'
+                "total": totalPrice
             }
         }]
     };
@@ -136,7 +137,7 @@ function getTotalPrice(req) {
         //show cart contant
         var totalPrice = cart.totalPrice;
     }
-    return totalPrice.toFixed(2).toString 
+    return totalPrice.toFixed(2).toString();
 }
 
 module.exports = router;
