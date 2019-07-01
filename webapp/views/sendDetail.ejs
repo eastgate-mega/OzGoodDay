@@ -2,17 +2,17 @@
 <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
 <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
+<script src="../js/ajax.js" type='text/javascript'></script>
 
 <!-- dialog对话框 邮寄地址表单显示 -->
 <div class='dialog-form' id='dialog-form' title='dialog名字'>
-    <form><fieldset>
+    <form><fieldset id='field'>
         <label>Name</label>
-        <input type="text" class='dialogInput' name='name' id='name' onblur="checkValue(name, value)">
+        <input type="text" class='dialogInput' name='name' id='name'>
         <label>Address</label>
-        <input type="text" class='dialogInput' name='address' id='address' onblur="checkValue(name, value)">
+        <input type="text" class='dialogInput' name='address' id='address'>
         <label>Phone</label>
-        <input type="text" class='dialogInput' name='phone' id='phone' oninput="value=value.replace(/[^0-9]/g,'')" onblur="checkValue(name, value)">
+        <input type="text" class='dialogInput' name='phone' id='phone'>
     </fieldset></form>
 </div>
 
@@ -42,13 +42,15 @@
 
 
 <script>
-    var addressList = '';
-
-    $("#create-address").button().click(function(){
-        $("#dialog-form").dialog('open');
-    });
+    var nameInput = false;
+    var addressInput = false;
+    var phoneInput = false;
+    var addressList;
 
     $(function(){
+        $("#create-address").button().click(function(){
+            $("#dialog-form").dialog('open');
+        });
         $('#dialog-form').dialog({
             autoOpen:false,
             height: 300,//表单高度
@@ -57,8 +59,10 @@
             buttons: {
                 //用于确认邮箱地址添加并关闭dialog
                 "确认": function(){
-
-                    $(this).dialog('close');
+                    if(nameInput == true && addressInput == true && phoneInput == true){
+                        var response = ajax(type, url, true);
+                        $(this).dialog('close');
+                    }
                 },
                 //取消所有更改并关闭dialog
                 'Cancel': function(){
@@ -69,43 +73,49 @@
 
             }
         });
+
+        //检验名字
+        $('#name').on('blur', function(){
+            var reg = /^[a-zA-Z\s*]{4,16}$/;
+            if($('#nameError').length == 0){
+                if(reg.test($('#name').val()) == false)
+                    $('<p id="nameError" style="display: block; color:red;">Only allow word input, Word Count of Name must within 4 and 16 </p>').insertBefore('#name')
+            }
+            else if(reg.test($('#name').val()) == true){
+                $('p').remove('#nameError');
+                nameInput = true;
+            }   
+        });
+
+        //检验地址(待修改)
+        $('#address').on('blur', function(){
+            var reg = /^[a-zA-Z\d\s*]{10,40}$/;
+            if($('#addressError').length == 0){
+                if(reg.test($('#address').val()) == false)
+                    $('<p id="addressError" style="display: block; color:red;">Address must include number and word, Word Count of Address must within 10 and 40. </p>').insertBefore('#address');
+            }
+            else if(reg.test($('#address').val()) == true){
+                $('p').remove('#addressError');
+                addressInput = true;
+            }   
+        });
+
+        //检验电话
+        $('#phone').on('blur', function(){
+            var reg = /^0\d{8,10}$/;
+            if($('#phoneError').length == 0){
+                if(reg.test($('#phone').val()) == false)
+                    $('<p id="phoneError" style="display: block; color:red;">Only allow number input, Count of phone number must within 9 and 11 and start with 0. </p>').insertBefore('#phone')
+            }
+            else if(reg.test($('#phone').val()) == true){
+                $('p').remove('#phoneError');
+                phoneInput = true;
+            }   
+        });
     });
 
-    function checkValue(obj, value){
-        console.log(obj);
-        console.log(value);
-        var newElement = '';
-        var target;
-        var reg='';
-        //验证名字
-        if(obj == 'name'){
-            reg = /^[a-zA-Z\s*]{4,16}$/;
-            if(value == '' || reg.test(value) == false )
-            {
-                newElement = "<p class='dialog-p'>Name cannot be null</p>";
-                target = document.getElementById(obj);
-                insertAfter(newElement,target);
-            }
-        }
-        //验证地址
-        if(obj == 'address'){
+    
 
-        }
-        //验证电话
-        if(obj == 'phone'){
-
-        }
-    }
-
-    function insertAfter(newElement, target){
-        console.log(newElement);
-        console.log(target);
-        var parent = target.parentNode;
-        if(parent.lastChild == target)
-            parent.appendChild(newElement);
-        else
-            parent.insertBefore(newElement, target.nextSibling);
-    }
 
     // var xmlhttp = new XMLHttpRequest();
     // var url;

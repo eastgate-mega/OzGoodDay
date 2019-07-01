@@ -74,7 +74,9 @@
 7.4 Paypal checkout
     7.4.1 add paypal button 
     7.4.2 payment logic
-    7.4.3 intergrate with right order *
+    7.4.3 intergrate with right order(including productname, total price, amount)
+    7.4.4 receive money from buyer
+    7.4.5 need to fix(can only receive USD now) *
 
 
 ```
