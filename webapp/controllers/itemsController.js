@@ -64,9 +64,7 @@ exports.cart_get_API = (req, res) => {
         var cart = new Cart(req.session.cart);
         //show cart contant
         console.log(cart);
-        
-        
-        res.send({items: cart.generateArray()});
+        res.send(cart);
       }
 }
 
