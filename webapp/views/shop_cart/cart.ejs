@@ -9,12 +9,14 @@
 
 
 <script>
-    var checkoutitem = ajax('GET', 'getCart', false).items;
+    var checkoutitem = ajax('GET', 'getCart', false);
     showItem(checkoutitem);
 
-    function showItem(item){
-        console.log(item)
-        for(var i=0;i<item.length;i++){
+    function showItem(items){
+        console.log(items.items.length);
+        for(var i=0;i<items.length;i++){
+            
+            console.log(1);
             document.getElementById('item-table').innerHTML += '<tr><td>'+ item[i].item.product_name + '</td><td>' + item[i].price + '</td><td>' + item[i].qty + '</td></tr>';
         }
     }
