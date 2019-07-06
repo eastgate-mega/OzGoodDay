@@ -9,15 +9,12 @@
 
 
 <script>
-    var checkoutitem = ajax('GET', 'getCart', false);
+    var checkoutitem = ajax('GET', 'getCart', false).items;
     showItem(checkoutitem);
 
     function showItem(items){
-        console.log(items);
         for(var i=0;i<items.length;i++){
-            
-            console.log(1);
-            document.getElementById('item-table').innerHTML += '<tr><td>'+ item[i].item.product_name + '</td><td>' + item[i].price + '</td><td>' + item[i].qty + '</td></tr>';
+            document.getElementById('item-table').innerHTML += '<tr><td>'+ items[i].item.product_name + '</td><td>' + items[i].price + '</td><td>' + items[i].qty + '</td></tr>';
         }
     }
 

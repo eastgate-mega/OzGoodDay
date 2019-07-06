@@ -12,8 +12,6 @@ function ajax(type, url, async){//方法，接口，是否异步
         }
     }else{//同步操作，需要等待
         result = JSON.parse(xmlhttp.response);
-        console.log('result');
-        console.log(result);
         return result;
     }
 }
