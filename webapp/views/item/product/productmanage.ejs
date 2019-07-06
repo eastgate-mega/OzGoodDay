@@ -1,14 +1,62 @@
 <% include ../partials/header %> 
-<script src=''></script>
-<table id='product-table'>
-    <th></th><!--用于显示图片-->
-    <th>Item</th>
-    <th>No</th>
-    <th>Quantity</th>
-    <th>Edit</th>
-</table>
-
+<div class='dialog-form' id='dialog-form' title='dialog名字'>
+        <form><fieldset id='field'>
+            <label>货物</label>
+            <input type="text" class='dialogInput' name='product' id='product'>
+            <label>货号</label>
+            <input type="text" class='dialogInput' name='product_no' id='product_no'>
+            <label>数量</label>
+            <input type="text" class='dialogInput' name='product_qty' id='product_qty'>
+        </fieldset></form>
+    </div>
+<div>
+    <button id='add_item'>添加新货品</button>
+</div>
+<div>
+    <table id='product-table'>
+        <tr>
+            <th></th><!--用于显示图片-->
+            <th>货物</th>
+            <th>货号</th>
+            <th>数量</th>
+            <th>编辑</th>
+        </tr>
+    </table>
+</div>
 <script>
-    // var itemlist = ajax(type, url, true);
+    function itemAdd(){
+        // POST 数据更新数据库
+        var itemlist = ajax(type, url, true);  
+        for(var i=0; i<itemlist.length; i++){
+            document.getElementById('product-table').innerHTML += '<tr><td>' + itemlist[i].image
+                                                                + '</td><td>' + itemlist[i].product
+                                                                + '</td><td>' + itemlist[i].product_no
+                                                                + '</td><td>' + itemlist[i].product_qty
+                                                                + '</td><td>' + '<div><button>删除</button></div>';
+        }
+    }
 
+    $(function(){
+        $("#add_item").button().click(function(){
+            $("#dialog-form").dialog('open');
+        });
+        $("#dialog-form").dialog({
+            autoOpen: false,
+            height: 500,
+            width: 500,
+            model: true,
+            buttons:{
+                "确认": function(){
+                    itemAdd();
+                    $(this).dialog('close');
+                },
+                "取消": function(){
+                    $(this).dialog('close');
+                }
+            },
+            close:function(){
+
+            }
+        });
+    });
 </script>
