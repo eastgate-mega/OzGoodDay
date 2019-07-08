@@ -12,7 +12,8 @@ const express     = require("express"),
       User        = require('./models/user'),
       mongoStore  = require('connect-mongo')(session),
       paymentRouter = require('./routes/payment'),
-      cartRouter = require('./routes/cart')
+      cartRouter = require('./routes/cart'),
+      manageRouter = require('./routes/manage')
 
 // MONGOOSE CONFIG
 mongoose.connect("mongodb://localhost/webapp", { useNewUrlParser: true });
@@ -51,6 +52,7 @@ app.use('/', customerRouter);
 app.use('/', indexRouter);
 app.use('/payment', paymentRouter);
 app.use('/', cartRouter);
+app.use('/manage', manageRouter);
 
 
 
