@@ -10,7 +10,7 @@ exports.find_all_items = (req, res) => {
             console.log(err);
             
         } else {
-            res.send(items);
+            res.send();
         }
     })
 }

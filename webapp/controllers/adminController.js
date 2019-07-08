@@ -1,5 +1,6 @@
 const User = require('../models/user'),
-passport = require('passport')
+passport = require('passport'),
+Address = require('../models/postAddress')
 
 exports.customer_profile_get = (req, res) => {
     res.render('login/user_profile');
@@ -36,4 +37,23 @@ exports.customer_login_post = (req, res) => {
     successRedirect: "/",
     failureRedirect: "/login"
     })
+}
+
+exports.customer_address_get = (req, res) => {
+    Address.find(function(err, address){
+        if (err) {
+            console.log(err);
+            
+        } else {
+            res.send(address);
+        }
+    })
+}
+
+exports.customer_address_post = (req, res) => {
+    res.send('address has been create');
+}
+
+exports.customer_address_put = (req, res) =>{
+    res.send('address has been update');
 }

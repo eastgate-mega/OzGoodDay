@@ -53,7 +53,7 @@ exports.cart_get = (req, res) => {
         //show cart contant
         console.log(cart);
         
-        res.render('shop_cart/cart', {items: cart.generateArray(), cart: cart, totalPrice: cart.totalPrice});
+        res.render('shop_cart/cart');
       }
 }
 
@@ -66,7 +66,7 @@ exports.cart_get_API = (req, res) => {
         console.log(cart);
         
         
-        res.send({items: cart.generateArray(), cart: cart});
+        res.send(cart.generateArray());
       }
 }
 

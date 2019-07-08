@@ -19,6 +19,13 @@ router.post("/login", passport.authenticate("local", {
 
 router.get("/logout", Admin.customer_logout);
 
+//user address detail API
+router.get('/address', Admin.customer_address_get);
+
+router.post('/address', Admin.customer_address_post);
+
+router.put('/address', Admin.customer_address_put);
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();

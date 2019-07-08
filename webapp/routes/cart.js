@@ -8,6 +8,7 @@ router.get('/cart', Items.cart_get);
 
 router.get('/getCart', Items.cart_get_API);
 
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
