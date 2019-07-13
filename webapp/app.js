@@ -3,17 +3,12 @@ const express     = require("express"),
       app         = express(),
       bodyParser  = require("body-parser"),
       mongoose    = require("mongoose"),
-      itemRouter  = require('./routes/items'),
       passport    = require("passport"),
       session     = require('express-session'),
       LocalStrategy = require("passport-local"),
-      customerRouter = require('./routes/admin'),
-      indexRouter = require('./routes/index'),
       User        = require('./models/user'),
       mongoStore  = require('connect-mongo')(session),
-      paymentRouter = require('./routes/payment'),
-      cartRouter = require('./routes/cart'),
-      manageRouter = require('./routes/manage')
+      router      = require('./routes/router')
 
 // MONGOOSE CONFIG
 mongoose.connect("mongodb://localhost/webapp", { useNewUrlParser: true });
@@ -46,15 +41,7 @@ app.use(function(req, res, next){
   next();
 });
 
-// use router
-app.use('/items', itemRouter);
-app.use('/', customerRouter);
-app.use('/', indexRouter);
-app.use('/payment', paymentRouter);
-app.use('/', cartRouter);
-app.use('/manage', manageRouter);
-
-
+router(app);
 
 // start server here
 app.listen(3000, 'localhost', function(){
