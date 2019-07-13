@@ -1,19 +1,26 @@
 <% include ../partials/header %> 
 <script src="../js/ajax.js" type='text/javascript'></script>
+
+
+<!-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> -->
+
+
 <div class='checkoutPage panel panel-default' id='checkoutPage'>
     <table class='table' id=item-table>
         <th>Product Name</th><th>Price</th><th>Quantity</th>
     </table>
 </div>
+<form action="/payment/pay" method="POST">
+    <input class='btn-buy' type="submit" value="Buy">
+</form>
 
 
 
 <script>
-    var checkoutitem = ajax('GET', 'getCart', false).items;
+    var checkoutitem = ajax('GET', 'getCart', false);
     showItem(checkoutitem);
 
     function showItem(items){
-        
         for(var i=0;i<items.length;i++){
             document.getElementById('item-table').innerHTML += '<tr><td>'+ items[i].item.product_name + '</td><td>' + items[i].price + '</td><td>' + items[i].qty + '</td></tr>';
         }
@@ -21,9 +28,8 @@
 
 </script>
 <style>
-    .checkoutPage{
-        height: 80%;
-        margin: 0 20px;
+    .checkoutPage, .btn-buy{
+        margin: 0 20px 20px 20px;
     }
     .checkoutItem{
         margin: 0 10px;
