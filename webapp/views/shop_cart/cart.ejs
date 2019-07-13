@@ -13,6 +13,7 @@
     showItem(checkoutitem);
 
     function showItem(items){
+        
         for(var i=0;i<items.length;i++){
             document.getElementById('item-table').innerHTML += '<tr><td>'+ items[i].item.product_name + '</td><td>' + items[i].price + '</td><td>' + items[i].qty + '</td></tr>';
         }
