@@ -63,7 +63,7 @@
 ==================================================
 ### 7 Order and Payment
 ```
-7.1 store order to DB *
+7.1 store order to DB 
 
 7.2 fill in delivery information *
     7.2.1 delivery information page *
