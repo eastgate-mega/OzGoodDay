@@ -38,8 +38,6 @@ exports.add_to_cart = (req, res) => {
       } else {
         cart.add(item, itemId);
         req.session.cart = cart;
-        // console.log(req.session.cart);
-        
         res.redirect('/items/'+ itemId);
       }
     });
@@ -50,9 +48,6 @@ exports.cart_get = (req, res) => {
         res.redirect('/')
       } else {
         var cart = new Cart(req.session.cart);
-        //show cart contant
-        console.log(cart);
-        
         res.render('shop_cart/cart');
       }
 }
@@ -62,10 +57,6 @@ exports.cart_get_API = (req, res) => {
         res.redirect('/')
       } else {
         var cart = new Cart(req.session.cart);
-        //show cart contant
-        console.log(cart);
-        
-        
         res.send(cart.generateArray());
       }
 }

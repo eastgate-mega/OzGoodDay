@@ -4,7 +4,8 @@ cartRouter = require('./cart'),
 manageRouter = require('./manage'),
 customerRouter = require('./admin'),
 indexRouter = require('./index'),
-itemRouter  = require('./items')
+itemRouter  = require('./items'),
+orderrouter = require('./order')
 
 
 
@@ -15,4 +16,5 @@ module.exports = app => {
     app.use('/payment', paymentRouter);
     app.use('/', cartRouter);
     app.use('/manage', manageRouter);
+    app.use('', orderrouter);
 }

@@ -1,5 +1,6 @@
 const Cart = require('../models/cart'),
-paypal = require('paypal-rest-sdk')
+paypal = require('paypal-rest-sdk'),
+Order = require('../models/order')
 
 // PAYPAL CONFIG
 paypal.configure({
@@ -54,9 +55,7 @@ exports.paypal_pay = (req, res) => {
                 if (link.rel === 'approval_url') {
                     res.redirect(link.href);
                 }
-            });
-
-            
+            }); 
         }
     });
 }
@@ -79,9 +78,27 @@ exports.pay_success = (req, res) => {
         if (error) {
             throw error;
         } else {
+            saveOrder(payment);        
             res.send('Success');
         }
     });
+}
+
+exports.get_all_orders = (req, res) =>{
+    Order.find(function(err, orders){
+        res.send(orders);
+    })
+}
+
+function saveOrder(payment){
+    Order.create(payment, function(err, item){
+        if (err) {
+            console.log(err);
+            
+        } else {
+            return
+        }
+    })
 }
 
 function getCart(req) {

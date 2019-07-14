@@ -2,13 +2,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+    payer: {
+        payment_method: String,
+        status: String,
+        payer_info:{
+            email: String,
+            first_name: String,
+            last_name: String,
+            payer_id: String,
+            shipping_address: Object,
+            country_code: String
+        }
     },
-    cart: {
-        type: Object,
-        required: true,
-        
-    }
+    transactions: [
+        {
+            amount: [Object],
+            payee: [Object],
+            description: String,
+            item_list: [Object],
+            related_resources: [Array]
+          }
+    ]
 });
+
+module.exports = mongoose.model('Order', orderSchema);
