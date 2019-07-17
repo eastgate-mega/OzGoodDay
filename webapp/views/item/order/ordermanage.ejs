@@ -24,7 +24,7 @@
     }
 
     function editTable(transactions, payer){
-        document.getElementById('item-table').innerHTML += '<tr><td>' + transactions.name + '</td><td>' + transactions.price + '</td><td>' + transactions.quantity + '</td><td>' + transactions.quantity * transactions.price + '</td><td>' + payer.payer_info.first_name + ' ' + payer.payer_info.last_name + '</td><td>' + payer.payer_info.email + '</td><td>' + payer.payment_method + '</td><td>' + payer.status + '</td><td><button>test</button>' + '</td></tr>';
+        document.getElementById('item-table').innerHTML += '<tr><td>' + transactions.name + '</td><td>' + transactions.price + '</td><td>' + transactions.quantity + '</td><td>' + transactions.quantity * transactions.price + '</td><td>' + payer.payer_info.first_name + ' ' + payer.payer_info.last_name + '</td><td>' + payer.payer_info.email + '</td><td>' + payer.payment_method + '</td><td>' + payer.status + "</td><td><button id='orderDelete'>删除</button></td></tr>";
     }
 
 </script>
@@ -34,10 +34,10 @@
         font-weight: bold;
     }
     .table{
-        width: 1200px;
+        width: 1325px;
     }
     .line{
-        width: 1200px;
+        width: 1325px;
         height: 2px;
         background-color: green;
         border: 1px solid;
