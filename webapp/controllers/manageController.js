@@ -1,6 +1,7 @@
 const Item = require('../models/item')
 
 exports.add_product = (req, res) => {
+    
     res.render('item/product/productmanage');
 }
 
