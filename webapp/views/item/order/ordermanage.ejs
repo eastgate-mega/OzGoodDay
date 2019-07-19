@@ -9,15 +9,17 @@
     </ul>
 </div>
 <div class='tab-content'>
+    <!-- 导航分页，显示不同内容 -->
+
     <div id='not_verify' class='tab-pane fade in active'>
-        <div class='orderpage panel panel-default' id='orderpage'>
+        <div class='orderpage panel panel-default'>
             <table class='table' id='item-table'>
                 <tr><th>商品</th><th>价格</th><th>数量</th><th>总价格</th><th>客户</th><th>邮箱</th><th>支付类型</th><th>状态</th><th>操作</th></tr>
             </table>
         </div>
     </div>
     <div id='done' class='tab-pane fade'>
-        <div class='orderpage panel panel-default' id='orderpage'>
+        <div class='orderpage panel panel-default'>
             <table class='table' id='item-table'>
                 <tr><th>商品</th><th>价格</th><th>数量</th><th>总价格</th><th>客户</th><th>邮箱</th><th>支付类型</th><th>状态</th><th>操作</th></tr>
             </table>
@@ -27,22 +29,31 @@
 
 
 
-
-
-
 <script>
+    //获取api中待完成的订单
     var orders = ajax('GET', '/orders', false);
-    console.log(orders);
+
+    loopArray(orders);
+    
+
+    //获取api中已完成的订单
+    // var orders_done = ajax('GET', '', true);
 
 
-    for(var i=orders.length-1;i>-1;i--){
-        var transactions = orders[i].transactions[0].item_list[0].items;
-        var payer = orders[i].payer;
-        for(var j=0;j<transactions.length;j++){
-            editTable(transactions[j], payer);
+    
+    //反序遍历Array, 正序遍历每个对象， 用editTable()编辑table.
+    function loopArray(object){
+        for(var i=object.length-1;i>-1;i--){
+            var transactions = object[i].transactions[0].item_list[0].items;
+            var payer = object[i].payer;
+            for(var j=0;j<transactions.length;j++){
+                editTable(transactions[j], payer);
+            }
         }
     }
 
+
+    //匹配id, 修改table中的内容.
     function editTable(transactions, payer){
         document.getElementById('item-table').innerHTML += '<tr><td>' + transactions.name + '</td><td>' + transactions.price + '</td><td>' + transactions.quantity + '</td><td>' + transactions.quantity * transactions.price + '</td><td>' + payer.payer_info.first_name + ' ' + payer.payer_info.last_name + '</td><td>' + payer.payer_info.email + '</td><td>' + payer.payment_method + '</td><td>' + payer.status + "</td><td><button class='operateBtn' id='done'>完成</button><button class='operateBtn' id='orderDelete'>删除</button></td></tr>";
     }
