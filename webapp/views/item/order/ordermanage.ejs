@@ -1,6 +1,6 @@
 <% include ../../partials/header %> 
-<link rel="stylesheet" href="../stylesheets/pagination.css" />
-<script type="text/javascript" src="../js/jquery.pagination.js"></script>
+<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 <script src="../js/ajax.js" type='text/javascript'></script>
 
 <h2 class='font'>订单管理</h2>
@@ -17,30 +17,56 @@
     <div class="tab-content">
         <div id="not_verify" class="tab-pane fade in active">
             <div class='orderpage panel panel-default' id='orderpage'>
-                <table data-toggle="table" data-url="" class='table' id='item-table'>
-                    <tr><th>商品</th><th>价格</th><th>数量</th><th>总价格</th><th>客户</th><th>邮箱</th><th>支付类型</th><th>状态</th><th>操作</th></tr>
+                <table id='table_verify'>
+                    <thead><tr>
+                        <th data-field='productName'>商品</th>
+                        <th data-field='price'>价格</th>
+                        <th data-field='quantity'>数量</th>
+                        <th data-field='total'>总价格</th>
+                        <th data-field='customer'>客户</th>
+                        <th data-field='email'>邮箱</th>
+                        <th data-field='payment'>支付类型</th>
+                        <th data-field='status'>状态</th>
+                        <!-- <th>操作</th> -->
+                    </tr></thead>
                 </table>
             </div>
         </div>
     
         <div id="done" class="tab-pane fade">
             <div class='orderpage panel panel-default' id='orderpage'>
-                <table class='table' id='item-table'>
-                    <tr><th>商品</th><th>价格</th><th>数量</th><th>总价格</th><th>客户</th><th>邮箱</th><th>支付类型</th><th>状态</th><th>操作</th></tr>
+                <table id='table_done'>
+                    <thead><tr>
+                        <th data-field='productName'>商品</th>
+                        <th data-field='price'>价格</th>
+                        <th data-field='quantity'>数量</th>
+                        <th data-field='total'>总价格</th>
+                        <th data-field='customer'>客户</th>
+                        <th data-field='email'>邮箱</th>
+                        <th data-field='payment'>支付类型</th>
+                        <th data-field='status'>状态</th>
+                        <!-- <th>操作</th> -->
+                    </tr></thead>
                 </table>
             </div>
         </div>
         <div id="return" class="tab-pane fade">
             <div class='orderpage panel panel-default' id='orderpage'>
-                <table class='table' id='item-table'>
-                    <tr><th>商品</th><th>价格</th><th>数量</th><th>总价格</th><th>客户</th><th>邮箱</th><th>支付类型</th><th>状态</th><th>操作</th></tr>
+                <table id='table_return'>
+                    <thead><tr>
+                        <th data-field='productName'>商品</th>
+                        <th data-field='price'>价格</th>
+                        <th data-field='quantity'>数量</th>
+                        <th data-field='total'>总价格</th>
+                        <th data-field='customer'>客户</th>
+                        <th data-field='email'>邮箱</th>
+                        <th data-field='payment'>支付类型</th>
+                        <th data-field='status'>状态</th>
+                        <!-- <th>操作</th> -->
+                    </tr></thead>
                 </table>
             </div>
         </div>
-    </div>
-
-    <div class='setPageDiv'>
-        <div class='Pagination' id='Pagination'></div>
     </div>
 
 
@@ -51,51 +77,66 @@
     loopArray(res);
 
     $(function(){
-        console.log(orders);
-        $('.setPageDiv').change(function(){
-            console.log(1);
-            pageDivide(parseInt($(this).val()));
-        })
+        $('#table_verify').bootstrapTable({
+            data: orders,
+            pagination: true,
+            pageSize: 20,
+            pageList: [20, 50, 100, 200]
+        });
 
-        function pageDivide(num){
-            var showNum = num;
-            var dataL = orders.length;
-            var pageNum = Math.ceil(dataL/showNum);
-            console.log(pageNum);
-            $('#Pagination').pagination(pageNum), {
-                num_edge_entries: 1,
-                num_display_entries: 4,
-                items_per_page: 1,
-                prevContent: '上一页',
-                nextContent: '下一页',
-                callback: function(index){
-                    console.log(123);
-                    // console.log(showNum * index + '~' + parseInt(showNum * index) + parseInt(showNum));
-                }
-            }
-        }
-        pageDivide(4);
+        $('#table_done').bootstrapTable({
+            data: orders_done,
+            pagination: true,
+            pageSize: 20,
+            pageList: [20, 50, 100, 200]
+        });
+
+        $('#table_return').bootstrapTable({
+            data: orders,
+            pagination: true,
+            pageSize: 20,
+            pageList: [20, 50, 100, 200]
+        })
     })
-    
-    
-     //获取api中已完成的订单
+
+    //获取api中已完成的订单
     // var orders_done = ajax('GET', '', false);
     //loopArray(orders_done);
 
+    var orders_done;//测试用
+
+
+    //获取api中待退货的订单
+    // var orders_return = ajax('GET', '', false);
+    //loopArray(orders_return);
+
+    var orders_return;//测试用
 
     
-    //反序遍历Array, 正序遍历每个对象， 用editTable()编辑table.
+    //反序遍历Array, 正序遍历每个对象，重新排列后台数据.
     function loopArray(object){
         for(var i=object.length-1;i>-1;i--){
             var transactions = object[i].transactions[0].item_list[0].items;
             var payer = object[i].payer;
             for(var j=0;j<transactions.length;j++){
-                var newObj = [{
-                    transaction: transactions[j],
-                    payer: payer
-                }]
-                editTable(transactions[j], payer);
+
+                var newObj = {
+                    productName: transactions[j].name,
+                    productDesc: transactions[j].description,
+                    price: '$' + transactions[j].price,
+                    quantity: transactions[j].quantity,
+                    currency: transactions[j].currency,
+                    total: '$' + transactions[j].price * transactions[j].quantity,
+                    customer: payer.payer_info.first_name + ' ' +payer.payer_info.last_name,
+                    email: payer.payer_info.email,
+                    country_code: payer.payer_info.country_code,
+                    payer_id: payer.payer_info.payer_id,
+                    address: payer.payer_info.shipping_address.line1 + ' ' + payer.payer_info.shipping_address.city + ' ' + payer.payer_info.shipping_address.state + ' ' + payer.payer_info.shipping_address.postal_code,
+                    payment: payer.payment_method,
+                    status: payer.status
+                }
                 orders.push(newObj);
+                
             }
         }
 
@@ -104,29 +145,24 @@
 
 
     //匹配id, 修改table中的内容.
-    function editTable(transactions, payer){
-        document.getElementById('item-table').innerHTML += '<tr><td>' + transactions.name + '</td><td>' + transactions.price + '</td><td>' + transactions.quantity + '</td><td>' + transactions.quantity * transactions.price + '</td><td>' + payer.payer_info.first_name + ' ' + payer.payer_info.last_name + '</td><td>' + payer.payer_info.email + '</td><td>' + payer.payment_method + '</td><td>' + payer.status + "</td><td><button class='operateBtn' id='orderDone'>完成</button><button class='operateBtn' id='orderDelete'>删除</button></td></tr>";
-    }
+    // function editTable(transactions, payer){
+    //     document.getElementById('item-table').innerHTML += '<tr><td>' + transactions.name + '</td><td>' + transactions.price + '</td><td>' + transactions.quantity + '</td><td>' + transactions.quantity * transactions.price + '</td><td>' + payer.payer_info.first_name + ' ' + payer.payer_info.last_name + '</td><td>' + payer.payer_info.email + '</td><td>' + payer.payment_method + '</td><td>' + payer.status + "</td><td><button class='operateBtn' id='orderDone'>完成</button><button class='operateBtn' id='orderDelete'>删除</button></td></tr>";
+    // }
 
 </script>
 
 <style>
-    .Pagination{
-        margin: auto;
-        float: right;
-        margin-right: 20px;
+    .fixed-table-container tbody td .th-inner, .fixed-table-container thead th .th-inner, .bootstrap-table .table:not(.table-condensed)>tbody>tr>td{
+        padding: 15px 40px;
+        text-align: center;
+        white-space: nowrap;
     }
-
 
     
     .font{
         font-weight: bold;
         margin: 10px 20px;
 
-    }
-    .table>tbody>tr>th, .table>tbody>tr>td{
-        white-space: nowrap;
-        padding: 8 40px;
     }
 
     .container{
@@ -141,6 +177,5 @@
     .orderpage{
         height: 60%;
         margin: 0 20px 10px 20px;
-        overflow: auto;
     }
 </style>
